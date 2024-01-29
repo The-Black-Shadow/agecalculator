@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:lifechrono/pages/add_family_members_page.dart';
+import 'package:lifechrono/pages/age_cal_page.dart';
+import 'package:lifechrono/pages/age_comp_page.dart';
+import 'package:lifechrono/pages/date_cal_page.dart';
+import 'package:lifechrono/pages/leap_year_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,7 +29,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          'Age Calculator',
+          'Life Chrono',
           style: TextStyle(
             color: Colors.black87,
             fontWeight: FontWeight.bold,
@@ -44,11 +49,37 @@ class _HomePageState extends State<HomePage> {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                // Navigate to a certain page when the card is clicked
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => DetailPage(index)),
-                // );
+                // Navigate to the respective calculator page when the card is clicked
+                if (index == 0) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AgeCalculator()),
+                  );
+                } else if (index == 1) {
+                  //Navigate to Weight Calculator Page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DateCalculator()),
+                  );
+                } else if (index == 2) {
+                  //Navigate to Weight Calculator Page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AgeCompare()),
+                  );
+                } else if (index == 3) {
+                  //Navigate to Weight Calculator Page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LeapYear()),
+                  );
+                } else if (index == 4) {
+                  //Navigate to Weight Calculator Page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddFamilyMembers()),
+                  );
+                } // Add more conditions for other calculator types if needed
               },
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
