@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lifechrono/pages/add_family_members_page.dart';
 import 'package:lifechrono/pages/age_cal_page.dart';
 import 'package:lifechrono/pages/age_comp_page.dart';
+import 'package:lifechrono/pages/bmi_page.dart';
 import 'package:lifechrono/pages/date_cal_page.dart';
 import 'package:lifechrono/pages/leap_year_page.dart';
 
@@ -20,7 +21,7 @@ class _HomePageState extends State<HomePage> {
     {'icon': Icons.compare_outlined, 'text': 'Age Comparison'},
     {'icon': Icons.calendar_today_outlined, 'text': 'Leap Year'},
     {'icon': Icons.manage_accounts, 'text': 'Add Family Member'},
-    {'icon': Icons.more_horiz, 'text': 'More'},
+    {'icon': Icons.more_horiz, 'text': 'BMI'},
   ];
 
   @override
@@ -78,6 +79,12 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => AddFamilyMembers()),
+                  );
+                } else if (index == 5) {
+                  //Navigate to Weight Calculator Page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Bmi()),
                   );
                 } // Add more conditions for other calculator types if needed
               },
