@@ -194,6 +194,59 @@ class _AddFamilyMembersState extends State<AddFamilyMembers> {
     );
   }
 
+  //member details
+  _showMemberDetailsDialog(int index) {
+    DateTime birthdate =
+        DateFormat('yyyy-MM-dd').parse(_familyMembers[index]['birthdate']);
+    DateTime today = DateTime.now();
+    int years = today.year - birthdate.year;
+    int months = today.month - birthdate.month;
+    int days = today.day - birthdate.day;
+
+    if (months < 0 || (months == 0 && days < 0)) {
+      years--;
+      months += 12;
+    }
+
+    DateTime nextBirthday =
+        DateTime(today.year, birthdate.month, birthdate.day);
+    if (today.isAfter(nextBirthday)) {
+      nextBirthday = DateTime(today.year + 1, birthdate.month, birthdate.day);
+    }
+
+    int daysUntilNextBirthday = nextBirthday.difference(today).inDays;
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(_familyMembers[index]['name']),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(
+                  "Relation: ${_familyMembers[index]['relationship']}",
+                ),
+                Text(
+                  "Birthdate: ${_familyMembers[index]['birthdate']}",
+                ),
+                Text('Age: $years years $months months $days days'),
+                Text('Days until next birthday: $daysUntilNextBirthday days'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Close'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -213,6 +266,7 @@ class _AddFamilyMembersState extends State<AddFamilyMembers> {
               subtitle: Text(
                 "${_familyMembers[index]['relationship']} | Birthdate: ${_familyMembers[index]['birthdate']}",
               ),
+              onTap: () => _showMemberDetailsDialog(index),
               trailing: IconButton(
                 icon: const Icon(Icons.edit),
                 onPressed: () => _showEditMemberDialog(index),
