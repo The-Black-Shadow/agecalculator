@@ -11,6 +11,7 @@ class AddFamilyMembers extends StatefulWidget {
 
 class _AddFamilyMembersState extends State<AddFamilyMembers> {
   List<Map<String, dynamic>> _familyMembers = [];
+  // ignore: unused_field
   bool _isLoading = true;
 
   final TextEditingController _nameController = TextEditingController();
