@@ -113,6 +113,8 @@ class _DateCalculatorState extends State<DateCalculator> {
               onPressed: () {
                 final initialDate = DateFormat('yyyy-MM-dd')
                     .parse(_initial_Date_Controller.text);
+                final finalDate =
+                    DateFormat('yyyy-MM-dd').parse(_final_Date_Controller.text);
                 final age = calculateAge(initialDate, finalDate);
                 setState(() {
                   _result = '$age';
@@ -237,6 +239,11 @@ class _DateCalculatorState extends State<DateCalculator> {
   }
 
   String calculateAge(DateTime initialDate, DateTime finalDate) {
+    if (finalDate.isBefore(initialDate)) {
+      final temp = initialDate;
+      initialDate = finalDate;
+      finalDate = temp;
+    }
     int years = finalDate.year - initialDate.year;
     int months = finalDate.month - initialDate.month;
     int days = finalDate.day - initialDate.day;
@@ -266,6 +273,11 @@ class _DateCalculatorState extends State<DateCalculator> {
         DateFormat('yyyy-MM-dd').parse(_initial_Date_Controller.text);
     DateTime finalDate =
         DateFormat('yyyy-MM-dd').parse(_final_Date_Controller.text);
+    if (finalDate.isBefore(initialDate)) {
+      final temp = initialDate;
+      initialDate = finalDate;
+      finalDate = temp;
+    }
     int differenceInSeconds = (finalDate.millisecondsSinceEpoch -
             initialDate.millisecondsSinceEpoch) ~/
         1000;
@@ -277,6 +289,11 @@ class _DateCalculatorState extends State<DateCalculator> {
         DateFormat('yyyy-MM-dd').parse(_initial_Date_Controller.text);
     DateTime finalDate =
         DateFormat('yyyy-MM-dd').parse(_final_Date_Controller.text);
+    if (finalDate.isBefore(initialDate)) {
+      final temp = initialDate;
+      initialDate = finalDate;
+      finalDate = temp;
+    }
     int differenceInSeconds = (finalDate.millisecondsSinceEpoch -
             initialDate.millisecondsSinceEpoch) ~/
         1000;
@@ -289,6 +306,11 @@ class _DateCalculatorState extends State<DateCalculator> {
         DateFormat('yyyy-MM-dd').parse(_initial_Date_Controller.text);
     DateTime finalDate =
         DateFormat('yyyy-MM-dd').parse(_final_Date_Controller.text);
+    if (finalDate.isBefore(initialDate)) {
+      final temp = initialDate;
+      initialDate = finalDate;
+      finalDate = temp;
+    }
     int differenceInSeconds = (finalDate.millisecondsSinceEpoch -
             initialDate.millisecondsSinceEpoch) ~/
         1000;
@@ -300,6 +322,11 @@ class _DateCalculatorState extends State<DateCalculator> {
         DateFormat('yyyy-MM-dd').parse(_initial_Date_Controller.text);
     DateTime finalDate =
         DateFormat('yyyy-MM-dd').parse(_final_Date_Controller.text);
+    if (finalDate.isBefore(initialDate)) {
+      final temp = initialDate;
+      initialDate = finalDate;
+      finalDate = temp;
+    }
     int differenceInSeconds = (finalDate.millisecondsSinceEpoch -
             initialDate.millisecondsSinceEpoch) ~/
         1000;
@@ -311,6 +338,11 @@ class _DateCalculatorState extends State<DateCalculator> {
         DateFormat('yyyy-MM-dd').parse(_initial_Date_Controller.text);
     DateTime finalDate =
         DateFormat('yyyy-MM-dd').parse(_final_Date_Controller.text);
+    if (finalDate.isBefore(initialDate)) {
+      final temp = initialDate;
+      initialDate = finalDate;
+      finalDate = temp;
+    }
     int differenceInSeconds = (finalDate.millisecondsSinceEpoch -
             initialDate.millisecondsSinceEpoch) ~/
         1000;
