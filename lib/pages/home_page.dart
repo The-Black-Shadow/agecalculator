@@ -21,7 +21,6 @@ class _HomePageState extends State<HomePage> {
     {'icon': Icons.compare_outlined, 'text': 'Age Comparison'},
     {'icon': Icons.calendar_today_outlined, 'text': 'Leap Year'},
     {'icon': Icons.manage_accounts, 'text': 'Add Family Member'},
-    {'icon': Icons.more_horiz, 'text': 'BMI'},
   ];
 
   @override
