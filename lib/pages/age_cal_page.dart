@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter/services.dart';
 
 class AgeCalculator extends StatefulWidget {
   const AgeCalculator({super.key});
@@ -65,7 +66,7 @@ class _AgeCalculatorState extends State<AgeCalculator> {
                   context: context,
                   initialDate: DateTime.now(),
                   firstDate: DateTime(1900),
-                  lastDate: DateTime(2100),
+                  lastDate: DateTime.now(),
                 );
                 if (date != null) {
                   _dateController.text = DateFormat('yyyy-MM-dd').format(date);
@@ -97,54 +98,107 @@ class _AgeCalculatorState extends State<AgeCalculator> {
               ),
             ),
           ),
-          Text(
-            'Your Age is : $_ageResult',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w400,
-              fontFamily: GoogleFonts.audiowide().fontFamily,
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Text(
+              'Your Age is : $_ageResult',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w400,
+                fontFamily: GoogleFonts.audiowide().fontFamily,
+              ),
             ),
           ),
           if (_ageResult.isNotEmpty) ...[
             const SizedBox(height: 10),
-            Text(
-              'Total Months: ${calculateTotalMonths(_ageResult)} months ${calculateRemainingDays(_ageResult)} days',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-                fontFamily: GoogleFonts.audiowide().fontFamily,
-              ),
-            ),
-            Text(
-              'Total Weeks: ${calculateTotalWeeks(_ageResult)} weeks ${calculateRemainingDaysAfterWeeks(_ageResult)} days',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-                fontFamily: GoogleFonts.audiowide().fontFamily,
-              ),
-            ),
-            Text(
-              'Total Hours: ${calculateTotalHours(_ageResult)} hours',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-                fontFamily: GoogleFonts.audiowide().fontFamily,
-              ),
-            ),
-            Text(
-              'Total Minutes: ${calculateTotalMinutes(_ageResult)} minutes',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-                fontFamily: GoogleFonts.audiowide().fontFamily,
-              ),
-            ),
-            Text(
-              'Total Days: ${calculateTotalDays(_ageResult)} days',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
-                fontFamily: GoogleFonts.audiowide().fontFamily,
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Card(
+                color: Colors.grey[200],
+                elevation: 4.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16.0),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Total Months: ${calculateTotalMonths(_ageResult)} months ${calculateRemainingDays(_ageResult)} days',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: GoogleFonts.audiowide().fontFamily,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        'Total Weeks: ${calculateTotalWeeks(_ageResult)} weeks ${calculateRemainingDaysAfterWeeks(_ageResult)} days',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: GoogleFonts.audiowide().fontFamily,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        'Total Minutes: ${calculateTotalMinutes(_ageResult)} minutes',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: GoogleFonts.audiowide().fontFamily,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        'Total Hours: ${calculateTotalHours(_ageResult)} hours',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: GoogleFonts.audiowide().fontFamily,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        'Total Days: ${calculateTotalDays(_ageResult)} days',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: GoogleFonts.audiowide().fontFamily,
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: IconButton(
+                          icon: const Icon(Icons.copy),
+                          onPressed: () {
+                            // Concatenate all age-related information
+                            String allInfo = '''
+                              Your Age is: $_ageResult
+                                Total Months: ${calculateTotalMonths(_ageResult)} months ${calculateRemainingDays(_ageResult)} days
+                                Total Weeks: ${calculateTotalWeeks(_ageResult)} weeks ${calculateRemainingDaysAfterWeeks(_ageResult)} days
+                                Total Hours: ${calculateTotalHours(_ageResult)} hours
+                                Total Minutes: ${calculateTotalMinutes(_ageResult)} minutes
+                                Total Days: ${calculateTotalDays(_ageResult)} days
+                              ''';
+
+                            // Copy the entire result to the clipboard
+                            Clipboard.setData(ClipboardData(text: allInfo));
+
+                            // Show a snackbar indicating that the text is copied
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Copied to clipboard'),
+                                duration: Duration(seconds: 1),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ],
