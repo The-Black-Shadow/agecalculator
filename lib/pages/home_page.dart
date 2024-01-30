@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          'Life Chrono',
+          'Age Calc',
           style: TextStyle(
             color: Colors.black87,
             fontWeight: FontWeight.bold,

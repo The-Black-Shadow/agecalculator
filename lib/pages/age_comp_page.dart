@@ -119,12 +119,13 @@ class _AgeCompareState extends State<AgeCompare> {
                 final age = calculateAge(finalDate, initialDate);
                 if (initialDate.isAfter(finalDate)) {
                   comparisonMessage =
-                      'Second person is older than the first person';
+                      'Congratulations : Second person is older than the first person';
                 } else if (initialDate.isBefore(finalDate)) {
                   comparisonMessage =
-                      'First person is older than the second person';
+                      'Congratulations : First person is older than the second person';
                 } else {
-                  comparisonMessage = 'Both persons are of the same age';
+                  comparisonMessage =
+                      'Congratulations : Both persons are of the same age';
                 }
                 setState(() {
                   comparisonMessage = comparisonMessage;
@@ -142,7 +143,7 @@ class _AgeCompareState extends State<AgeCompare> {
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Text(
-                'Congratulations : $comparisonMessage',
+                comparisonMessage,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w400,
@@ -227,12 +228,12 @@ class _AgeCompareState extends State<AgeCompare> {
                             onPressed: () {
                               // Concatenate all age-related information
                               String allInfo = '''
-                                Your Age is: $_result
-                                  Total Months: ${calculateTotalMonths(_result)} months ${calculateRemainingDays(_result)} days
-                                  Total Weeks: ${calculateTotalWeeks(_result)} weeks ${calculateRemainingDaysAfterWeeks(_result)} days
-                                  Total Hours: ${calculateTotalHours(_result)} hours
-                                  Total Minutes: ${calculateTotalMinutes(_result)} minutes
-                                  Total Days: ${calculateTotalDays(_result)} days
+Your Age is: $_result
+Total Months: ${calculateTotalMonths(_result)} months ${calculateRemainingDays(_result)} days
+Total Weeks: ${calculateTotalWeeks(_result)} weeks ${calculateRemainingDaysAfterWeeks(_result)} days
+Total Hours: ${calculateTotalHours(_result)} hours
+Total Minutes: ${calculateTotalMinutes(_result)} minutes
+Total Days: ${calculateTotalDays(_result)} days
                                 ''';
 
                               // Copy the entire result to the clipboard
@@ -261,6 +262,11 @@ class _AgeCompareState extends State<AgeCompare> {
   }
 
   String calculateAge(DateTime finalDate, DateTime initialDate) {
+    if (finalDate.isBefore(initialDate)) {
+      final temp = initialDate;
+      initialDate = finalDate;
+      finalDate = temp;
+    }
     int years = finalDate.year - initialDate.year;
     int months = finalDate.month - initialDate.month;
     int days = finalDate.day - initialDate.day;
@@ -290,6 +296,11 @@ class _AgeCompareState extends State<AgeCompare> {
         DateFormat('yyyy-MM-dd').parse(_initial_Date_Controller.text);
     DateTime finalDate =
         DateFormat('yyyy-MM-dd').parse(_final_Date_Controller.text);
+    if (finalDate.isBefore(initialDate)) {
+      final temp = initialDate;
+      initialDate = finalDate;
+      finalDate = temp;
+    }
     int differenceInSeconds = (finalDate.millisecondsSinceEpoch -
             initialDate.millisecondsSinceEpoch) ~/
         1000;
@@ -301,6 +312,11 @@ class _AgeCompareState extends State<AgeCompare> {
         DateFormat('yyyy-MM-dd').parse(_initial_Date_Controller.text);
     DateTime finalDate =
         DateFormat('yyyy-MM-dd').parse(_final_Date_Controller.text);
+    if (finalDate.isBefore(initialDate)) {
+      final temp = initialDate;
+      initialDate = finalDate;
+      finalDate = temp;
+    }
     int differenceInSeconds = (finalDate.millisecondsSinceEpoch -
             initialDate.millisecondsSinceEpoch) ~/
         1000;
@@ -313,6 +329,11 @@ class _AgeCompareState extends State<AgeCompare> {
         DateFormat('yyyy-MM-dd').parse(_initial_Date_Controller.text);
     DateTime finalDate =
         DateFormat('yyyy-MM-dd').parse(_final_Date_Controller.text);
+    if (finalDate.isBefore(initialDate)) {
+      final temp = initialDate;
+      initialDate = finalDate;
+      finalDate = temp;
+    }
     int differenceInSeconds = (finalDate.millisecondsSinceEpoch -
             initialDate.millisecondsSinceEpoch) ~/
         1000;
@@ -324,6 +345,11 @@ class _AgeCompareState extends State<AgeCompare> {
         DateFormat('yyyy-MM-dd').parse(_initial_Date_Controller.text);
     DateTime finalDate =
         DateFormat('yyyy-MM-dd').parse(_final_Date_Controller.text);
+    if (finalDate.isBefore(initialDate)) {
+      final temp = initialDate;
+      initialDate = finalDate;
+      finalDate = temp;
+    }
     int differenceInSeconds = (finalDate.millisecondsSinceEpoch -
             initialDate.millisecondsSinceEpoch) ~/
         1000;
@@ -335,6 +361,11 @@ class _AgeCompareState extends State<AgeCompare> {
         DateFormat('yyyy-MM-dd').parse(_initial_Date_Controller.text);
     DateTime finalDate =
         DateFormat('yyyy-MM-dd').parse(_final_Date_Controller.text);
+    if (finalDate.isBefore(initialDate)) {
+      final temp = initialDate;
+      initialDate = finalDate;
+      finalDate = temp;
+    }
     int differenceInSeconds = (finalDate.millisecondsSinceEpoch -
             initialDate.millisecondsSinceEpoch) ~/
         1000;

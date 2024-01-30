@@ -175,12 +175,12 @@ class _AgeCalculatorState extends State<AgeCalculator> {
                           onPressed: () {
                             // Concatenate all age-related information
                             String allInfo = '''
-                              Your Age is: $_ageResult
-                                Total Months: ${calculateTotalMonths(_ageResult)} months ${calculateRemainingDays(_ageResult)} days
-                                Total Weeks: ${calculateTotalWeeks(_ageResult)} weeks ${calculateRemainingDaysAfterWeeks(_ageResult)} days
-                                Total Hours: ${calculateTotalHours(_ageResult)} hours
-                                Total Minutes: ${calculateTotalMinutes(_ageResult)} minutes
-                                Total Days: ${calculateTotalDays(_ageResult)} days
+Your Age is: $_ageResult
+Total Months: ${calculateTotalMonths(_ageResult)} months ${calculateRemainingDays(_ageResult)} days
+Total Weeks: ${calculateTotalWeeks(_ageResult)} weeks ${calculateRemainingDaysAfterWeeks(_ageResult)} days
+Total Hours: ${calculateTotalHours(_ageResult)} hours
+Total Minutes: ${calculateTotalMinutes(_ageResult)} minutes
+Total Days: ${calculateTotalDays(_ageResult)} days
                               ''';
 
                             // Copy the entire result to the clipboard
