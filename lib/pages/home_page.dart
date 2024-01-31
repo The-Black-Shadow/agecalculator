@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:lifechrono/components/ad_helper.dart';
 import 'package:lifechrono/pages/add_family_members_page.dart';
@@ -46,11 +47,12 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text(
+          title: Text(
             'Age Calc',
             style: TextStyle(
               color: Colors.black87,
               fontWeight: FontWeight.bold,
+              fontFamily: GoogleFonts.audiowide().fontFamily,
             ),
           ),
           backgroundColor: Colors.grey[200],
@@ -60,8 +62,8 @@ class _HomePageState extends State<HomePage> {
           child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              crossAxisSpacing: 16.0,
-              mainAxisSpacing: 16.0,
+              crossAxisSpacing: 14.0,
+              mainAxisSpacing: 14.0,
             ),
             itemCount: cardData.length,
             itemBuilder: (context, index) {
@@ -119,7 +121,9 @@ class _HomePageState extends State<HomePage> {
                         const SizedBox(height: 16.0),
                         Text(
                           cardData[index]['text'],
-                          style: const TextStyle(fontSize: 14.0),
+                          style: TextStyle(
+                              fontSize: 13.0,
+                              fontFamily: GoogleFonts.audiowide().fontFamily),
                         ),
                       ],
                     ),
