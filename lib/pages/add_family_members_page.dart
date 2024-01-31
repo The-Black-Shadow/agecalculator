@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:intl/intl.dart';
+import 'package:lifechrono/components/ad_helper.dart';
 import 'package:lifechrono/components/sql_helper.dart';
 
 class AddFamilyMembers extends StatefulWidget {
@@ -10,6 +12,8 @@ class AddFamilyMembers extends StatefulWidget {
 }
 
 class _AddFamilyMembersState extends State<AddFamilyMembers> {
+  //add
+  BannerAd? _bannerAd;
   List<Map<String, dynamic>> _familyMembers = [];
   // ignore: unused_field
   bool _isLoading = true;
@@ -30,7 +34,7 @@ class _AddFamilyMembersState extends State<AddFamilyMembers> {
   void initState() {
     super.initState();
     _refreshFamilyMembers();
-    print("..number of family members: ${_familyMembers.length}");
+    _create_bannerAd();
   }
 
   void _showAddFamilyMemberDialog() {
@@ -248,34 +252,49 @@ class _AddFamilyMembersState extends State<AddFamilyMembers> {
     );
   }
 
+  //add
+  void _create_bannerAd() {
+    _bannerAd = BannerAd(
+      size: AdSize.fullBanner,
+      adUnitId: AdHelper.bannerAdUnitId,
+      listener: AdHelper.bannerListener,
+      request: const AdRequest(),
+    )..load();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Add Family Members'),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _showAddFamilyMemberDialog,
-        child: const Icon(Icons.add),
-      ),
-      body: Center(
-        child: ListView.builder(
-          itemCount: _familyMembers.length,
-          itemBuilder: (context, index) => Card(
-            child: ListTile(
-              title: Text(_familyMembers[index]['name']),
-              subtitle: Text(
-                "${_familyMembers[index]['relationship']} | Birthdate: ${_familyMembers[index]['birthdate']}",
-              ),
-              onTap: () => _showMemberDetailsDialog(index),
-              trailing: IconButton(
-                icon: const Icon(Icons.edit),
-                onPressed: () => _showEditMemberDialog(index),
+        appBar: AppBar(
+          title: const Text('Add Family Members'),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: _showAddFamilyMemberDialog,
+          child: const Icon(Icons.add),
+        ),
+        body: Center(
+          child: ListView.builder(
+            itemCount: _familyMembers.length,
+            itemBuilder: (context, index) => Card(
+              child: ListTile(
+                title: Text(_familyMembers[index]['name']),
+                subtitle: Text(
+                  "${_familyMembers[index]['relationship']} | Birthdate: ${_familyMembers[index]['birthdate']}",
+                ),
+                onTap: () => _showMemberDetailsDialog(index),
+                trailing: IconButton(
+                  icon: const Icon(Icons.edit),
+                  onPressed: () => _showEditMemberDialog(index),
+                ),
               ),
             ),
           ),
         ),
-      ),
-    );
+        bottomNavigationBar: _bannerAd == null
+            ? Container()
+            : Container(
+                height: 54,
+                child: AdWidget(ad: _bannerAd!),
+              ));
   }
 }
